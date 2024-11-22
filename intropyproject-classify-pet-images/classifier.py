@@ -4,6 +4,7 @@ import torchvision.transforms as transforms
 from torch.autograd import Variable
 import torchvision.models as models
 from torch import __version__
+from torchvision import models as tv_models
 
 resnet18 = models.resnet18(pretrained=True)
 alexnet = models.alexnet(pretrained=True)
@@ -16,6 +17,15 @@ with open('imagenet1000_clsid_to_human.txt') as imagenet_classes_file:
     imagenet_classes_dict = ast.literal_eval(imagenet_classes_file.read())
 
 def classifier(img_path, model_name):
+    if model_name == 'resnet':
+        model = tv_models.resnet18(weights=tv_models.ResNet18_Weights.IMAGENET1K_V1)
+    elif model_name == 'alexnet':
+        model = tv_models.alexnet(weights=tv_models.AlexNet_Weights.IMAGENET1K_V1)
+    elif model_name == 'vgg':
+        model = tv_models.vgg16(weights=tv_models.VGG16_Weights.IMAGENET1K_V1)
+    else:
+        raise ValueError("Model name not recognized. Choose from 'resnet', 'alexnet', 'vgg'.")
+
     # load the image
     img_pil = Image.open(img_path)
 
