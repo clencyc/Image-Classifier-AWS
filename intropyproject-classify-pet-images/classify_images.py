@@ -65,7 +65,7 @@ def classify_images(images_dir, results_dic, model):
      Returns:
            None - results_dic is mutable data type so no return needed.         
     """
-    for key in results_dic:
+    for key in results_dic.items():
         # Get the full path or the image
         img_path = f"{images_dir}/{key}"
 

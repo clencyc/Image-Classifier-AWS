@@ -71,7 +71,7 @@ def print_results(results_dic, results_stats_dic, model,
     
     # Print summary statistics (percentages) on Model Run
     print("\n\n*** Summary Statistics ***")
-    for key in results_stats_dic:
+    for key in results_stats_dic.values():
         if key.startswith('pct'):
             print("{:20}: {:.2f}".format(key, results_stats_dic[key]))
     

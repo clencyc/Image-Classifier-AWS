@@ -80,7 +80,7 @@ def calculates_results_stats(results_dic):
     results_stats_dic['n_correct_breed'] = 0
 
     # Process through the results dictionary
-    for key in results_dic:
+    for key in results_dic.values():
         # Number of matches between pet & classifier labels
         if results_dic[key][2] == 1:
             results_stats_dic['n_match'] += 1
