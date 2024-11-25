@@ -72,11 +72,14 @@ def classify_images(images_dir, results_dic, model):
         # Get the classifier label
         model_label = classifier(img_path, model).lower().strip()
 
-        # Get the pet image label
-        pet_label = results_dic[key][0]
+        truth = results_dic[key][0]
 
-        # Determine if there is a match between the pet label and the model label
-        match = 1 if pet_label in model_label else 0
-
-        # update the results dictionary
-        results_dic[key].extend([model_label, match])
+       # 3c. If the pet image label is found within the classifier label list of terms 
+       # as an exact match to one of the terms in the list - then they are added to 
+       # results_dic as an exact match(1) using extend list function
+        if truth in model_label:
+           results_dic[key].extend([model_label, 1])
+        else:
+           # 3d. If not found then added to results dictionary as NOT a match(0) using
+           # the extend function 
+           results_dic[key].extend([model_label, 0])
