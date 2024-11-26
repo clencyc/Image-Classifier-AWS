@@ -42,16 +42,21 @@ def get_pet_labels(image_dir):
     """
     # Replace None with the results_dic dictionary that you created with this
     # function
-    results_dic = {}
+    in_files = listdir(image_dir)
+    results_dic = dict()
 
-    filenames = listdir(image_dir)
+    for idx in range(0, len(in_files), 1):
+         if in_files[idx][0] != ".":
+             pet_label = ""
 
-    for filename in filenames:
-        if filename[0] != '.':
-            # pet_label = filename.lower().split('_')
-           pet_label = ''.join([word for word in filename.lower().split('_') if word.isalpha()])
-            
-            # Add the filename and pet label to the dictionary
-           results_dic[filename] = [pet_label.strip()]
-    
-    return results_dic
+             pass
+             if in_files[idx] not in results_dic:
+              results_dic[in_files[idx]] = [pet_label]
+              
+             else:
+               print("** Warning: Duplicate files exist in directory:", 
+                     in_files[idx])
+ 
+    # TODO 2b. Replace None with the results_dic dictionary that you created
+    # with this function
+    return None
