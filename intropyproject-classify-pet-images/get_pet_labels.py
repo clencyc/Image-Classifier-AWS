@@ -23,6 +23,9 @@ from os import listdir
 #       in the return statement with results_dic dictionary that you create 
 #       with this function
 # 
+from classifier import classifier 
+
+
 def get_pet_labels(image_dir):
     """
     Creates a dictionary of pet labels (results_dic) based upon the filenames 
@@ -40,23 +43,20 @@ def get_pet_labels(image_dir):
       List. The list contains for following item:
          index 0 = pet image label (string)
     """
-    # Replace None with the results_dic dictionary that you created with this
-    # function
-    in_files = listdir(image_dir)
-    results_dic = dict()
-
-    for idx in range(0, len(in_files), 1):
-         if in_files[idx][0] != ".":
-             pet_label = ""
-
-             pass
-             if in_files[idx] not in results_dic:
-              results_dic[in_files[idx]] = [pet_label]
-              
-             else:
-               print("** Warning: Duplicate files exist in directory:", 
-                     in_files[idx])
- 
-    # TODO 2b. Replace None with the results_dic dictionary that you created
-    # with this function
-    return None
+    # Create an empty dictionary to hold the results
+    results_dic = {}
+    
+    # Retrieve the filenames from the folder
+    filenames = listdir(image_dir)
+    
+    # Process each filename to extract the pet label
+    for filename in filenames:
+        if filename[0] != '.':
+            # Split the filename by underscores and remove the file extension
+            pet_label = ''.join([word for word in filename.lower().split('_') if word.isalpha()])
+            
+            # Add the filename and pet label to the dictionary
+            results_dic[filename] = [pet_label.strip()]
+    
+    # Return the results dictionary
+    return results_dic

@@ -74,7 +74,7 @@ def adjust_results4_isadog(results_dic, dogfile):
             if dogname not in dognames_dic:
                 dognames_dic[dogname] = 1
 
-    for key in results_dic.values():
+    for key in results_dic:
         # Check if pet image label is a dog
         pet_label_is_dog = 1 if results_dic[key][0] in dognames_dic else 0
         

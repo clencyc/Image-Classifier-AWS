@@ -20,15 +20,17 @@
 #           of the pet and classifier labels as the item at index 2 of the list.
 #
 ##
-# Imports classifier function for using CNN to classify images 
-from classifier import classifier 
+# Imports classifier function for using CNN to classify images  
 
 # TODO 3: Define classify_images function below, specifically replace the None
 #       below by the function definition of the classify_images function. 
 #       Notice that this function doesn't return anything because the 
 #       results_dic dictionary that is passed into the function is a mutable 
 #       data type so no return is needed.
-# 
+#
+
+from classifier import classifier 
+
 def classify_images(images_dir, results_dic, model):
     """
     Creates classifier labels with classifier function, compares pet labels to 
@@ -65,8 +67,8 @@ def classify_images(images_dir, results_dic, model):
      Returns:
            None - results_dic is mutable data type so no return needed.         
     """
-    for key in results_dic.items():
-        # Get the full path or the image
+    for key in results_dic:
+        # Get the full path of the image
         img_path = f"{images_dir}/{key}"
 
         # Get the classifier label
@@ -74,12 +76,12 @@ def classify_images(images_dir, results_dic, model):
 
         truth = results_dic[key][0]
 
-       # 3c. If the pet image label is found within the classifier label list of terms 
-       # as an exact match to one of the terms in the list - then they are added to 
-       # results_dic as an exact match(1) using extend list function
+        # If the pet image label is found within the classifier label list of terms 
+        # as an exact match to one of the terms in the list - then they are added to 
+        # results_dic as an exact match(1) using extend list function
         if truth in model_label:
-           results_dic[key].extend([model_label, 1])
+            results_dic[key].extend([model_label, 1])
         else:
-           # 3d. If not found then added to results dictionary as NOT a match(0) using
-           # the extend function 
-           results_dic[key].extend([model_label, 0])
+            # If not found then added to results dictionary as NOT a match(0) using
+            # the extend function 
+            results_dic[key].extend([model_label, 0])
