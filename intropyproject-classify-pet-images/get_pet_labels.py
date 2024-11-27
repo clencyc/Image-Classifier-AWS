@@ -23,8 +23,6 @@ from os import listdir
 #       in the return statement with results_dic dictionary that you create 
 #       with this function
 # 
-from classifier import classifier 
-
 
 def get_pet_labels(image_dir):
     """
@@ -53,8 +51,7 @@ def get_pet_labels(image_dir):
     for filename in filenames:
         if filename[0] != '.':
             # Split the filename by underscores and remove the file extension
-            pet_label = ''.join([word for word in filename.lower().split('_') if word.isalpha()])
-            
+            pet_label = ' '.join([word for word in filename.lower().split('_') if word.isalpha()])       
             # Add the filename and pet label to the dictionary
             results_dic[filename] = [pet_label.strip()]
     
