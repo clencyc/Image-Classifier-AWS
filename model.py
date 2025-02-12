@@ -8,12 +8,16 @@ def build_model(arch, hidden_units):
         model = models.vgg13(pretrained=True)
     elif arch == "resnet34":
         model = models.resnet34(pretrained=True)
+    elif arch == "efficientnet_v2_s":
+        model = models.efficientnet_v2_s(pretrained=True)
     else:
         raise ValueError("Unsupported architecture")
 
     # Freeze parameters
     for param in model.parameters():
-        param.requires_grad = False
+        param.requires_grad = True
+
+    
 
     # Replace the classifier
     if arch == "vgg13":
